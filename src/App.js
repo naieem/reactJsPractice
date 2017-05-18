@@ -5,20 +5,24 @@ import _ from 'lodash';
 import './App.css';
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state={};
-    this.numbers = [1, 2, 3, 4, 5];
-    this.listItems = this.numbers.map((number) =>
-      <li>{number}</li>
-    );
-  }
+    constructor(){
+      super();
+      this.state={};
+      // this.numbers = [1, 2, 3, 4, 5];
+      // this.listItems = this.numbers.map((number) =>
+      //   <li>{number}</li>
+      // );
+    }
     componentWillMount(){
       var url="https://jsonplaceholder.typicode.com/posts";
       Request.get(url).then((response)=>{
         console.log(response);
-        this.setState({
-          info:response.body
+        // this.setState({
+        //   info:response.body
+        // });
+        this.allInfo=response.body;
+        this.movies=_.map(this.allInfo,(movie)=>{
+          return <li>{movie.title}</li>;
         });
       });
     };
@@ -26,13 +30,9 @@ class App extends Component {
       setTimeout(()=>{
         this.setState({name:"naieem"});
       }, 3000);
-      var movies=_.map(this.state.info,(movie)=>{
-        return <li>{movie.title}</li>;
-      });
       return ( 
         <div className="App">
-        {this.listItems}
-        {movies}
+        {this.movies}
           <div className="App-header">
           <img src={ logo }
           className="App-logo"
