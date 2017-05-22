@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import Request from 'superagent';
+//import Request from 'superagent';
+import Actions from './actions/actions';
 import _ from 'lodash';
 import './App.css';
 
 class App extends Component {
     constructor(){
       super();
-      this.state={};
+      this.state={
+        name:"hello"
+      };
+      // var action=new Actions();
+      console.log(Actions.getName());
       // this.numbers = [1, 2, 3, 4, 5];
       // this.listItems = this.numbers.map((number) =>
       //   <li>{number}</li>
       // );
     }
-    componentWillMount(){
-      var url="https://jsonplaceholder.typicode.com/posts";
-      Request.get(url).then((response)=>{
-        console.log(response);
-        // this.setState({
-        //   info:response.body
-        // });
-        this.allInfo=response.body;
-        this.movies=_.map(this.allInfo,(movie)=>{
-          return <li>{movie.title}</li>;
-        });
-      });
-    };
+    // componentWillMount(){
+    //   var url="https://jsonplaceholder.typicode.com/posts";
+    //   Request.get(url).then((response)=>{
+    //     console.log(response);
+    //     // this.setState({
+    //     //   info:response.body
+    //     // });
+    //     this.allInfo=response.body;
+    //     this.movies=_.map(this.allInfo,(movie)=>{
+    //       return <li>{movie.title}</li>;
+    //     });
+    //   });
+    // };
     render() {
       setTimeout(()=>{
         this.setState({name:"naieem"});
       }, 3000);
       return ( 
         <div className="App">
-        {this.movies}
+        // {this.movies}
           <div className="App-header">
           <img src={ logo }
           className="App-logo"
